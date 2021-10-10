@@ -5,10 +5,16 @@ sudo /opt/vc/bin/tvservice -o
 # Turn ON HDMI output
 #sudo /opt/vc/bin/tvservice -p
 
-# Turn OFF USB chip
+# Turn OFF Ethernet Driver
+# echo -n "1-1.1:1.0" | sudo tee /sys/bus/usb/drivers/smsc95xx/unbind
+
+# Turn ON  Ethernet Driver
+# echo -n "1-1.1:1.0" | sudo tee /sys/bus/usb/drivers/smsc95xx/bind
+
+# Turn OFF USB chip & ETH0
 # echo '1-1' |sudo tee /sys/bus/usb/drivers/usb/unbind
 
-# Turn ON USB chip
+# Turn ON USB chip & ETH0
 # echo '1-1' |sudo tee /sys/bus/usb/drivers/usb/bind
 
 
@@ -20,9 +26,13 @@ echo "dtoverlay=pi3-disable-wifi" | tee -a ${filename}
 # Turn OFF bluetooth 
 echo "dtoverlay=pi3-disable-bt" | tee -a ${filename}
 
-# Turn OFF on board leds
-printf "dtparam=act_led_trigger=none\ndtparam=act_led_activelow=off\ndtparam=pwr_led_trigger=none\ndtparam=pwr_led_activelow=off\n" >> ${filename}
-echo "Led's off"
+# Turn OFF on active led
+printf "dtparam=act_led_trigger=none\ndtparam=act_led_activelow=off\n" >> ${filename}
+echo "Active led off"
+
+# Turn OFF on power led
+printf "dtparam=pwr_led_trigger=none\ndtparam=pwr_led_activelow=off\n" >> ${filename}
+echo "Power led off"
 
 # Turn OFF audio module
 echo "dtparam=audio=off" | tee -a ${filename}
