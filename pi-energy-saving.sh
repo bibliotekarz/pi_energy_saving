@@ -1,6 +1,6 @@
 #!/bin/bash
 # Turn OFF HDMI output
-sudo /opt/vc/bin/tvservice -o
+/opt/vc/bin/tvservice -o
 
 # Turn ON HDMI output
 #sudo /opt/vc/bin/tvservice -p
