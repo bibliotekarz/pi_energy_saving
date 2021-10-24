@@ -38,9 +38,13 @@ echo "Power led off"
 echo "dtparam=audio=off" | tee -a ${filename}
 
 
-# Change of processor parameters 
+# In /boot/config.txt change of processor parameters 
 
 # arm_freq_min=250
 # core_freq_min=100
 # sdram_freq_min=150
 # over_voltage_min=0
+# gpu_freq=150
+# h264_freq=25
+# isp_freq=25
+# v3d_freq=25
